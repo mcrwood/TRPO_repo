@@ -1,0 +1,110 @@
+<div class="login-form-container">
+  <div class="login-form">
+    <h2>Войти</h2>
+
+    <%= render "devise/shared/errors", resource: resource %>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, "Пароль" %><br />
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field remember-me">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me, "Запомнить меня" %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "Войти", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+    <div class="links-container">
+      <%= render "devise/shared/links" %>
+    <div>
+  </div>
+</div>
+<style>/* Стили для контейнера формы входа */
+.login-form-container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Стили для самой формы входа */
+.login-form {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Стили для заголовка формы */
+.login-form h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Стили для полей ввода */
+.login-form .field {
+  margin-bottom: 15px;
+}
+
+.login-form .field label {
+  font-weight: bold;
+}
+
+.login-form .field input[type="email"],
+.login-form .field input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Стили для чекбокса "Запомнить меня" */
+.login-form .remember-me {
+  margin-bottom: 10px;
+}
+
+/* Стили для кнопки "Войти" */
+.login-form .actions .btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.login-form .actions .btn:hover {
+  background-color: #0056b3;
+}
+
+/* Стили для контейнера ссылок */
+.links-container {
+  margin-top: 20px;
+}
+
+.links-container a {
+  display: inline-block;
+  margin-right: 10px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.links-container a:hover {
+  text-decoration: underline;
+}
+</style>

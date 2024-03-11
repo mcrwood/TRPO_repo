@@ -1,0 +1,82 @@
+<% @cart.orderables.each do |orderable| %>
+  <% apartment = orderable.apartment %>
+  <div id="<%= "cart-#{apartment.id}" %>">
+    <div style="display:flex;justify-content:space-between;margin: 0em 5em;">
+      <strong>Назвние:</strong>
+      <%= apartment.title %>
+      <strong>Описание:</strong>
+      <%= apartment.description %>
+      <strong>Цена:</strong>
+      <%= apartment.price %>
+      <%= form_with(url: cart_add_path) do |f| %>
+        <%= f.hidden_field :id, value: apartment.id %>
+        <%= f.number_field :quantity, value: orderable.quantity, min: 0 %>
+        <%= f.submit "Add To Cart" %>
+      <% end %>
+      <%= form_with(url: cart_remove_path) do |f| %>
+        <%= f.hidden_field :id, value: orderable.id %>
+        <%= f.submit "X" %>
+      <% end %>
+      <strong>Всего:</strong>
+      <%= orderable.total %>
+    </div>
+  </div>
+<% end %>
+
+<style>.cart-item-container {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Стили для названия и описания */
+.cart-item-info {
+  margin-bottom: 10px;
+}
+
+.cart-item-info strong {
+  margin-right: 10px;
+}
+
+/* Стили для формы */
+.cart-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-form input[type="number"] {
+  width: 60px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.cart-form input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cart-form input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Стили для кнопки удаления */
+.cart-remove-button {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cart-remove-button:hover {
+  background-color: #b30000;
+}</style>

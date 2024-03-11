@@ -1,0 +1,98 @@
+<%= form_with(model: apartment, url: apartment.persisted? ? apartment_path(apartment) : apartments_path, local: true) do |form| %>
+  <% if apartment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(apartment.errors.count, 'error') %> запретила сохранение этого объекта:</h2>
+
+      <ul>
+        <% apartment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :Название %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Описание %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Цена %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Местоположение %>
+    <%= form.text_area :location %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<style>.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.actions {
+  margin-top: 20px;
+}
+
+input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Стили для сообщений об ошибках */
+#error_explanation {
+  color: #dc3545;
+  margin-bottom: 20px;
+}
+
+#error_explanation h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#error_explanation ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#error_explanation li {
+  margin-bottom: 5px;
+}</style>

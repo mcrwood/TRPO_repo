@@ -1,0 +1,35 @@
+<h1>Недвижимость в закладках</h1>
+<% @cart.orderables.each do |orderable| %>
+  <% apartment = orderable.apartment %>
+  <p><%= apartment.title %> * <%= orderable.quantity %> = $<%= apartment.price * orderable.quantity %></p>
+
+       <%= render partial: "cart/cart" if @render_cart %>
+<% end %>
+<p>Общая стоимость (Rub): <%= @cart.total %> </p>
+
+<style>h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Стили для каждого элемента корзины */
+.cart-item {
+  margin-bottom: 10px;
+}
+
+/* Стили для названия недвижимости и ее количества */
+.cart-item-info {
+  margin-bottom: 5px;
+}
+
+.cart-item-info strong {
+  margin-right: 5px;
+}
+
+/* Стили для общей стоимости */
+.total-cost {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+}</style>

@@ -1,0 +1,82 @@
+<h1>Список объектов</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th>Описание</th>
+      <th>Цена</th>
+      <th>Местоположение</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @apartments.each do |apartment| %>
+      <tr>
+        <td><%= apartment.title %></td>
+        <td><%= apartment.description %></td>
+        <td><%= apartment.price %></td>
+        <td><%= apartment.location %></td>
+        <td><%= link_to 'Просмотреть', apartment %></td>
+        <td><%= link_to 'Редактировать', edit_apartment_path(apartment) %></td>
+        <td><%= link_to 'Удалить', apartment, 'data-turbo-method': :delete, data: { confirm: 'Вы уверены?' } %></td>
+         <%= form_with(url: cart_add_path) do |f| %>
+      <td><%= f.hidden_field :id, value: apartment.id %>
+      <%= f.number_field :quantity, value: 0, min: 1 %>
+      <%= f.submit "Добавить в избранные" %></td>
+    <% end %> 
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to 'Добавить объект', new_apartment_path %></p>
+<style>table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+/* Стили для кнопок */
+.button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #45a049;
+}
+
+/* Стили для формы добавления в корзину */
+.form-add-to-cart {
+  display: inline-block;
+}
+
+/* Стили для ссылок */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+</style>
